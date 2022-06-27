@@ -14,12 +14,18 @@ template <class elData> class dequeElement
 template <class Data> class deque
 {
 	dequeElement<Data>* m_head, * m_tail;
+	int m_maxLength, m_length;
 
 public:
-	deque()
+	deque(int maxLength = 0) /* 0 или любое отрицательное число - безграничный дек. любое положительное число - размер дека*/
 	{
 		m_head = NULL;
 		m_tail = NULL;
+		if (maxLength)
+			m_maxLength = maxLength;
+		else
+			m_maxLength = -1;
+		m_length = 0;
 	}
 
 	int empty()
@@ -27,24 +33,37 @@ public:
 		return m_head == NULL, m_tail == NULL;
 	}
 
-	void inRight(Data* pSrcData)
+	int full()
 	{
+		return m_length == m_maxLength;
+	}
+
+	int inRight(Data* pSrcData)
+	{
+		if (full())
+			return 0;
 		dequeElement<Data>* tmp = new dequeElement<Data>(m_tail, NULL, pSrcData);
 		if (empty())
 			m_head = tmp;
 		else
 			m_tail->m_next = tmp;
 		m_tail = tmp;
+		m_length++;
+		return 1;
 	}
 
-	void inLeft(Data* pSrcData)
+	int inLeft(Data* pSrcData)
 	{
+		if (full())
+			return 0;
 		dequeElement<Data>* tmp = new dequeElement<Data>(NULL, m_head, pSrcData);
 		if (empty())
 			m_tail = tmp;
 		else
 			m_head->m_previous = tmp;
 		m_head = tmp;
+		m_length++;
+		return 1;
 	}
 
 	void printDeque()
@@ -59,18 +78,18 @@ public:
 
 	Data outRight()
 	{
-		dequeElement<Data>* tmp = m_tail;
 		if (empty())
 			return 0;
+		dequeElement<Data>* tmp = m_tail;
 		m_tail = m_tail->m_previous;
 		return tmp->m_data;
 	}
 
 	Data outLeft()
 	{
-		dequeElement<Data>* tmp = m_head;
 		if (empty())
 			return 0;
+		dequeElement<Data>* tmp = m_head;
 		m_head = m_head->m_next;
 		return tmp->m_data;
 	}
