@@ -57,4 +57,35 @@ public:
 		}
 	}
 
+	Data outRight()
+	{
+		dequeElement<Data>* tmp = m_tail;
+		if (empty())
+			return 0;
+		m_tail = m_tail->m_previous;
+		return tmp->m_data;
+	}
+
+	Data outLeft()
+	{
+		dequeElement<Data>* tmp = m_head;
+		if (empty())
+			return 0;
+		m_head = m_head->m_next;
+		return tmp->m_data;
+	}
+
+	Data readRight()
+	{
+		if (empty())
+			return 0;
+		return m_head->m_data;
+	}
+
+	Data readLeft()
+	{
+		if (empty())
+			return 0;
+		return m_head->m_data;
+	}
 };

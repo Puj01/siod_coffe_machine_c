@@ -7,7 +7,7 @@ int main()
 {
 	system("chcp 1251");
 	deque<int> myDeque;
-	int a;
+	int a, int1;
 	do
 	{
 		system("cls");
@@ -16,5 +16,10 @@ int main()
 		myDeque.inLeft(&a);
 	} while (a != 0);
 	myDeque.printDeque();
+	while (!myDeque.empty())
+	{
+		int1 = myDeque.outRight();
+		cout << "int1: " << int1 << endl;
+	}
 	return 0;
 }
