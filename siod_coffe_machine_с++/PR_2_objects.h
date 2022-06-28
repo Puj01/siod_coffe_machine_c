@@ -1,4 +1,5 @@
-#include "limited_input_deque_doubleLL.h"
+//#include "limited_input_deque_doubleLL.h"
+#include "limited_input_deque_array.h"
 class pot
 {
 	int m_maxStorage;
@@ -33,7 +34,7 @@ class coffeeMachine
 {
 	int m_coffe;
 
-	deque<pot> m_conveyor;
+	deque<pot, 10> m_conveyor;
 
 public:
 	coffeeMachine(int coffe = 1000)
@@ -76,7 +77,7 @@ public:
 			std::cout << "банка упакована." << std::endl;
 		}
 
-		if (m_coffe < Pot.getMaxStorage() && m_conveyor.empty())
+		if (m_coffe < Pot.getMaxStorage() && m_conveyor.empty()) // завершение работы
 			return 0;
 
 		return 1;

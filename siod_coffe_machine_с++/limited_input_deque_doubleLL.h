@@ -12,20 +12,16 @@ template <class elData> class dequeElement
 	}
 };
 
-template <class Data> class deque : public dequeInterface <Data>
+template <class Data,size_t N> class deque : public dequeInterface <Data> /* 0 или любое отрицательное число - безграничный дек. любое положительное число - размер дека*/
 {
 	dequeElement<Data>* m_head, * m_tail;
-	int m_maxLength, m_length;
+	int N, m_length;
 
 public:
-	deque(int maxLength = 10) /* 0 или любое отрицательное число - безграничный дек. любое положительное число - размер дека*/
+	deque()
 	{
 		m_head = NULL;
 		m_tail = NULL;
-		if (maxLength)
-			m_maxLength = maxLength;
-		else
-			m_maxLength = -1;
 		m_length = 0;
 	}
 	
@@ -47,7 +43,7 @@ public:
 
 	int full()
 	{
-		return m_length == m_maxLength;
+		return m_length == N;
 	}
 
 	int inRight(Data* pSrcData)

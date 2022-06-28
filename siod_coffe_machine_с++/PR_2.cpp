@@ -10,8 +10,6 @@ int main()
 	coffeeMachine CoffeBot(2500);
 	int run;
 	pot* pPot = NULL;
-	deque<pot> m_conveyor(10);
-
 
 	do
 	{
