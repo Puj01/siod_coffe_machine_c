@@ -18,7 +18,7 @@ template <class Data> class deque : public dequeInterface <Data>
 	int m_maxLength, m_length;
 
 public:
-	deque(int maxLength = 0) /* 0 или любое отрицательное число - безграничный дек. любое положительное число - размер дека*/
+	deque(int maxLength = 10) /* 0 или любое отрицательное число - безграничный дек. любое положительное число - размер дека*/
 	{
 		m_head = NULL;
 		m_tail = NULL;
@@ -27,6 +27,17 @@ public:
 		else
 			m_maxLength = -1;
 		m_length = 0;
+	}
+	
+	~deque()
+	{
+		dequeElement<Data>* tmp;
+		while (m_head)
+		{
+			tmp = m_head;
+			m_head = m_head->m_next;
+			delete tmp;
+		}
 	}
 
 	int empty()

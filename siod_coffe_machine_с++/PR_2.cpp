@@ -1,6 +1,5 @@
 #include <iostream>
 #include "PR_2_objects.h"
-//#include "input_limited_deque.h"
 
 using namespace std;
 
@@ -11,6 +10,7 @@ int main()
 	coffeeMachine CoffeBot(2500);
 	int run;
 	pot* pPot = NULL;
+	deque<pot> m_conveyor(10);
 
 
 	do
@@ -21,14 +21,3 @@ int main()
 	} while (run);
 	return 0;
 }
-
-/*
-cout << "Введите количество банок в упаковке: ";
-	cin >> packSize;
-	pack = new pot * [packSize];
-
-	for (i = 0; i < packSize; i++)
-	{
-		pack[i] = new pot(250);
-	}
-*/

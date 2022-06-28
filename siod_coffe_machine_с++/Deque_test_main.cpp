@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 	system("chcp 1251");
-	deque<int> myDeque;
+	deque<int> myDeque();
 	int a, int1;
 	do
 	{

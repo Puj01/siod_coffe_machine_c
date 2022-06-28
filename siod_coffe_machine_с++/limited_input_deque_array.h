@@ -2,15 +2,21 @@
 
 template <class Data> class deque : public dequeInterface<Data>
 {
-	int m_left, m_right, m_maxLength, m_length;
+	int m_left, m_right, m_maxLength;
 	Data* m_data;
 
+public:
 	deque(int maxLength = 10)
 	{
 		m_maxLength = maxLength;
 		m_left = 0;
 		m_right = m_maxLength - 1;
 		m_data = new Data[m_maxLength];
+	}
+
+	~deque()
+	{
+		delete[] m_data;
 	}
 
 	int empty()
@@ -33,15 +39,15 @@ template <class Data> class deque : public dequeInterface<Data>
 	}
 	Data outRight()
 	{
-		int temp = m_right;
+		int tmp = m_right;
 		m_right = m_right ? m_right - 1 : m_maxLength - 1;
 		return m_data[tmp];
 	}
 
 	Data outLeft()
 	{
-		int temp = m_left;
-		m_left = = (m_left + 1) % m_maxLength;
+		int tmp = m_left;
+		m_left= (m_left + 1) % m_maxLength;
 		return m_data[m_left];
 	}
 

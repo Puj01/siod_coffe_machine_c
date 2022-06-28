@@ -1,4 +1,4 @@
-#include "limit_input_deque_vector_templates.h"
+#include "limited_input_deque_doubleLL.h"
 class pot
 {
 	int m_maxStorage;
@@ -32,7 +32,8 @@ public:
 class coffeeMachine
 {
 	int m_coffe;
-	Deque <pot> m_conveyor;
+
+	deque<pot> m_conveyor;
 
 public:
 	coffeeMachine(int coffe = 1000)
@@ -55,13 +56,13 @@ public:
 		if (m_coffe >= Pot.getMaxStorage())
 		{
 			addCoffe(Pot); //добавление кофе на конвейр
-			m_conveyor.InRight(Pot);
+			m_conveyor.inRight(&Pot);
 			std::cout << "Заполнение банки. Заполнено: " << Pot.getStorage() << " Осталось: " << m_coffe <<  std::endl;
 
-			pot tmpPot = m_conveyor.ReadRight(); // проверка добавленной банки
+			pot tmpPot = m_conveyor.readRight(); // проверка добавленной банки
 			if (!checkPot(tmpPot))
 			{
-				m_conveyor.OutRight();
+				m_conveyor.outRight();
 				m_coffe += tmpPot.getStorage();
 				std::cout << "Банка не прошла проверку. Снята с конвейра. Кофе возвращено в хранилище." << std::endl;
 
@@ -69,13 +70,13 @@ public:
 		}
 
 		// упаковщик
-		if ((m_coffe < Pot.getMaxStorage() || m_conveyor.Full()) && !m_conveyor.Empty())
+		if ((m_coffe < Pot.getMaxStorage() || m_conveyor.full()) && !m_conveyor.empty())
 		{
-			Pot = m_conveyor.OutLeft();
+			Pot = m_conveyor.outLeft();
 			std::cout << "банка упакована." << std::endl;
 		}
 
-		if (m_coffe < Pot.getMaxStorage() && m_conveyor.Empty())
+		if (m_coffe < Pot.getMaxStorage() && m_conveyor.empty())
 			return 0;
 
 		return 1;
