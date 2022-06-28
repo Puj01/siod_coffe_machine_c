@@ -42,7 +42,7 @@ public:
 
 	int empty()
 	{
-		return m_head == NULL, m_tail == NULL;
+		return m_head == NULL || m_tail == NULL;
 	}
 
 	int full()
