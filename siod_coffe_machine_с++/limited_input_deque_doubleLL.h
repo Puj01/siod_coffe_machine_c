@@ -1,3 +1,4 @@
+#include "limit_input_deque_interface.h"
 template <class elData> class dequeElement
 {
 	template <class Data> friend class deque;
@@ -11,7 +12,7 @@ template <class elData> class dequeElement
 	}
 };
 
-template <class Data> class deque
+template <class Data> class deque : public dequeInterface <Data>
 {
 	dequeElement<Data>* m_head, * m_tail;
 	int m_maxLength, m_length;
